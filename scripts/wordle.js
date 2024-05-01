@@ -1,5 +1,5 @@
 const rows = document.querySelectorAll('.row');
-const correctAnswer = "APPLE";
+const correctAnswer = "DIARY";
 let isAnswerCorrect = false;
 
 
@@ -31,13 +31,27 @@ function enableRow(row) {
                 checkIfRowIsFull(row, inputs);
             }
         })
-        
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Backspace') {
+                moveFocusToPreviousInput(input, inputs);
+            }
+        })        
     })
+}
+
+function moveFocusToPreviousInput(currentInput, rowInputs) {
+    const currentIndex = Array.from(rowInputs).indexOf(currentInput);
+    if (0 < currentIndex && currentIndex <= rowInputs.length - 1 && rowInputs[currentIndex].value.length === 0) {
+        const previousInput = rowInputs[currentIndex - 1];
+        currentInput.disabled = true;
+        previousInput.disabled = false;
+        previousInput.focus();
+    }
 }
 
 function moveFocusToNextInput(currentInput, rowInputs) {
     const currentIndex = Array.from(rowInputs).indexOf(currentInput);
-    if (0 <= currentIndex && currentIndex < rowInputs.length - 1) {
+    if (0 <= currentIndex && currentIndex < rowInputs.length - 1 && rowInputs[currentIndex].value.length > 0) {
         const nextInput = rowInputs[currentIndex + 1];
         nextInput.disabled = false;
         currentInput.disabled = true;
