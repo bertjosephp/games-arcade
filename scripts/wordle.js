@@ -8,28 +8,30 @@ const resultTitle = document.querySelector('.result-title');
 const resultMessage = document.querySelector('.result-message');
 const overlay = document.getElementById('overlay');
 
+let rows = [];
 let correctAnswer = loadNewGuessWord();
 let currentRowIndex = 0;
+let isGameOver = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     generateWordleBoard(6, 5);
 
-    const rows = document.querySelectorAll('.row');
-    disableAllInputs(rows);
-    enableRow(currentRowIndex, rows);
+    rows = document.querySelectorAll('.row');
+    disableAllInputs();
+    enableRow(currentRowIndex);
 
-    submitButton.addEventListener('click', () => {
-        checkIfRowIsFull(currentRowIndex, rows);
-    })
-
-    restartButton.addEventListener('click', () => {
-        restartGame(rows);
-    })
-
-    overlay.addEventListener('click', () => {
-        closeResult(modal);
-    })
+    submitButton.addEventListener('click', handleSubmitClick);
+    restartButton.addEventListener('click', handleRestartClick);
+    overlay.addEventListener('click', () => closeResult(modal));
 })
+
+function handleSubmitClick() {
+    checkIfRowIsFull(currentRowIndex);
+}
+
+function handleRestartClick() {
+    restartGame();
+}
 
 function loadNewGuessWord() {
     const index = Math.floor(Math.random() * listOfWords.length);
@@ -51,7 +53,7 @@ function generateWordleBoard(numRows, numCols) {
     }
 }
 
-function disableAllInputs(rows) {
+function disableAllInputs() {
     rows.forEach(row => {
         const inputs = row.querySelectorAll('input[type="text"]');
         inputs.forEach(input => {
@@ -60,7 +62,7 @@ function disableAllInputs(rows) {
     })
 }
 
-function enableRow(rowIndex, rows) {
+function enableRow(rowIndex) {
     const row = rows[rowIndex];
     const rowInputs = row.querySelectorAll('input[type="text"]');
     rowInputs[0].disabled = false;
@@ -72,7 +74,7 @@ function enableRow(rowIndex, rows) {
         })
         currentInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
-                checkIfRowIsFull(currentRowIndex, rows);
+                checkIfRowIsFull(currentRowIndex);
             }
         })
         currentInput.addEventListener('keydown', (event) => {
@@ -103,22 +105,27 @@ function moveFocusToNextInput(currentInput, rowInputs) {
     }
 }
 
-function checkIfRowIsFull(rowIndex, rows) {
+function checkIfRowIsFull(rowIndex) {
     const row = rows[rowIndex];
     const rowInputs = row.querySelectorAll('input[type="text"]');
     const isFull = Array.from(rowInputs).every(rowInput => rowInput.value.length === rowInput.maxLength);
     if (isFull) {
         const isAnswerCorrect = verifyAnswer(rowInputs);
         if (isAnswerCorrect) {
-            disableAllInputs(rows);
+            isGameOver = true;
+            disableAllInputs();
             setTimeout(displayResult(modal, true), 1000);
+            toggleButton(isGameOver);
         }
         else if (row.nextElementSibling) {
+            isGameOver = false;
             currentRowIndex += 1;
-            enableRow(currentRowIndex, rows)
+            enableRow(currentRowIndex)
         } else {
-            disableAllInputs(rows);
+            isGameOver = true;
+            disableAllInputs();
             setTimeout(displayResult(modal, false), 1000);
+            toggleButton(isGameOver);
         }
     }
 }
@@ -141,12 +148,14 @@ function verifyAnswer(rowInputs) {
     return false;
 }
 
-function restartGame(rows) {
-    clearWordleBoard();
+function restartGame() {
     correctAnswer = loadNewGuessWord();
-    closeResult(modal);
     currentRowIndex = 0;
-    enableRow(currentRowIndex, rows);
+    isGameOver = false;
+    clearWordleBoard();
+    toggleButton(isGameOver);
+    closeResult(modal);
+    enableRow(currentRowIndex);
 }
 
 function displayResult(modal, isWinner) {
@@ -173,4 +182,16 @@ function clearWordleBoard() {
         input.value = '';
         input.classList.remove('correct-letter', 'wrong-position', 'wrong-letter');
     });
+}
+
+function toggleButton(isGameOver) {
+    if (isGameOver) {
+        submitButton.textContent = 'Restart Game';
+        submitButton.removeEventListener('click', handleSubmitClick);
+        submitButton.addEventListener('click', handleRestartClick);
+    } else {
+        submitButton.textContent = 'Submit';
+        submitButton.removeEventListener('click', handleRestartClick);
+        submitButton.addEventListener('click', handleSubmitClick);
+    }
 }
