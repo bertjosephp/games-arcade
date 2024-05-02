@@ -15,7 +15,9 @@
 </head>
 <body>
     <header>
+        <a href="index.html" class="back-link">←</a>
         <h1>Games Arcade</h1>
+        <button class="help-button">?</button>
     </header>
 
     <main>
@@ -26,7 +28,17 @@
         </section>
     </main>
 
-    <div id="modal">
+    <div id="help-modal" class="modal">
+        <h2>How To Play</h2>
+        <div class="help-content">
+            <p>Guess the Wordle in 6 tries.</p>
+            <p>Each guess must be a valid 5-letter word.</p>
+            <p>The color of the tiles will change to show how close your guess was to the word.</p>
+        </div>
+        <button class="close-help-button">Okay</div>
+    </div>
+
+    <div id="result-modal" class="modal">
         <h2 class="result-title"></h2>
         <p class="result-message"></p>
         <button class="restart-button">Restart Game</button>

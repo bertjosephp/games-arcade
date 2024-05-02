@@ -2,6 +2,33 @@ main {
     padding: 20px 0;
 }
 
+header {
+    /* padding: 0 20px; */
+}
+
+header .back-link {
+    font-size: 32px;
+    color: black;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-right: auto;
+    /* justify-self: flex-start;
+    align-self:  */
+}
+
+header .help-button {
+    font-size: 32px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 40px;
+    padding: 0;
+    border: 0;
+    font-weight: 800;
+}
+
 .wordle-section {
     display: flex;
     flex-direction: column;
@@ -10,6 +37,7 @@ main {
 
 .wordle-section h1 {
     font-size: 40px;
+    padding: 24px 0;
 }
 
 .wordle-section .row {
@@ -33,7 +61,7 @@ main {
     border: 2px solid green;
 }
 
-button {
+.submit-button, .restart-button, .close-help-button {
     font-size: 20px;
     margin-top: 40px;
     padding: 10px 80px;
@@ -42,11 +70,11 @@ button {
     background-color: white;
 }
 
-button:hover {
+.submit-button:hover, .restart-button:hover, .close-help-button:hover {
     background-color: lightgray;
 }
 
-button:active {
+.submit-button:active, .restart-button:active, .close-help-button:active {
     background-color: gray;
 }
 
@@ -97,9 +125,9 @@ footer {
     color: black;
 }
 
-/* Game Result Display */
+/* Popups */
 
-#modal {
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -116,15 +144,25 @@ footer {
     align-items: center;
 }
 
-#modal.active {
+.help-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.help-content p {
+    margin: 5px 0;
+}
+
+.modal.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
-#modal h2 {
+.modal h2 {
     font-size: 24px;
 }
 
-#modal p {
+.modal p {
     font-size: 16px;
 }
 
@@ -143,4 +181,15 @@ footer {
 #overlay.active {
     opacity: 0.8;
     pointer-events: all;
+}
+
+@media screen and (max-width: 720px) {
+    header .back-link {
+        margin-left: 10px;
+    }
+    
+    header .help-button {
+        margin-right: 10px;
+
+    }
 }
