@@ -1,3 +1,7 @@
+main {
+    padding: 20px 0;
+}
+
 .wordle-section {
     display: flex;
     flex-direction: column;
@@ -29,27 +33,66 @@
     border: 2px solid green;
 }
 
-.wordle-section button {
+.wordle-section .submit-button {
     font-size: 20px;
     margin-top: 40px;
     padding: 10px 80px;
     border-radius: 15px;
+    cursor: pointer; 
+    background-color: white;
+}
+
+.wordle-section .submit-button:hover {
+    background-color: lightgray;
+}
+
+.wordle-section .submit-button:active {
+    background-color: gray;
 }
 
 .wordle-section .correct-letter {
-    background-color: green;
-    border-color: green;
+   --flip-color: green;
+    /* background-color: green;
+    border-color: green; */
     color: white;
+    animation: vertical-flip 0.5s ease-in forwards;
 }
 
 .wordle-section .wrong-position {
-    background-color: yellow;
-    border-color: yellow;
+    --flip-color: yellow;
+    /* background-color: yellow;
+    border-color: yellow; */
     color: white;
+    animation: vertical-flip 0.5s ease-in forwards;
 }
 
 .wordle-section .wrong-letter {
-    background-color: gray;
-    border-color: gray;
+    --flip-color: gray;
+    /* background-color: gray;
+    border-color: gray; */
     color: white;
+    animation: vertical-flip 0.5s ease-in forwards;
+}
+
+@keyframes vertical-flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    /* 50% {
+        transform: rotateY(180deg);
+        background-color: var(--flip-color);
+        border-color: var(--flip-color);
+    } */
+
+    100% {
+        transform: rotateY(360deg);
+        background-color: var(--flip-color);
+        border-color: var(--flip-color);
+    }
+}
+
+footer {
+    background-color: white;
+    color: black;
 }

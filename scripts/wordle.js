@@ -1,15 +1,36 @@
-const rows = document.querySelectorAll('.row');
 const correctAnswer = "DIARY";
-let isAnswerCorrect = false;
-
+let currentRowIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    let currentRow = 0;     // first row
-    disableAllInputs();
-    enableRow(rows[currentRow]);
+    generateWordleBoard(6, 5)
+
+    const rows = document.querySelectorAll('.row');
+    disableAllInputs(rows);
+    enableRow(currentRowIndex, rows);
+
+    const submitButton = document.querySelector('.submit-button')
+    submitButton.addEventListener('click', () => {
+        checkIfRowIsFull(currentRowIndex, rows);
+    })
 })
 
-function disableAllInputs() {
+function generateWordleBoard(numRows, numCols) {
+    const gameBoard = document.querySelector('.game-board');
+    for (let i = 0; i < numRows; i++) {
+        const row = document.createElement('div');
+        row.classList.add('row');
+        for (let j = 0; j < numCols; j++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.maxLength = '1';
+            input.classList.add('wordle-input');
+            row.appendChild(input);
+        }
+        gameBoard.appendChild(row);
+    }
+}
+
+function disableAllInputs(rows) {
     rows.forEach(row => {
         const inputs = row.querySelectorAll('input[type="text"]');
         inputs.forEach(input => {
@@ -18,22 +39,24 @@ function disableAllInputs() {
     })
 }
 
-function enableRow(row) {
-    const inputs = row.querySelectorAll('input[type="text"]');
-    inputs[0].disabled = false;
-    inputs[0].focus();
-    inputs.forEach(input => {
-        input.addEventListener('input', () => {
-            moveFocusToNextInput(input, inputs);
+function enableRow(rowIndex, rows) {
+    const row = rows[rowIndex];
+    const rowInputs = row.querySelectorAll('input[type="text"]');
+    rowInputs[0].disabled = false;
+    rowInputs[0].focus();
+    rowInputs.forEach(currentInput => {
+        currentInput.addEventListener('input', () => {
+            currentInput.value = currentInput.value.toUpperCase();
+            moveFocusToNextInput(currentInput, rowInputs);
         })
-        input.addEventListener('keydown', (event) => {
+        currentInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
-                checkIfRowIsFull(row, inputs);
+                checkIfRowIsFull(currentRowIndex, rows);
             }
         })
-        input.addEventListener('keydown', (event) => {
+        currentInput.addEventListener('keydown', (event) => {
             if (event.key === 'Backspace') {
-                moveFocusToPreviousInput(input, inputs);
+                moveFocusToPreviousInput(currentInput, rowInputs);
             }
         })        
     })
@@ -59,16 +82,19 @@ function moveFocusToNextInput(currentInput, rowInputs) {
     }
 }
 
-function checkIfRowIsFull(row, rowInputs) {
+function checkIfRowIsFull(rowIndex, rows) {
+    const row = rows[rowIndex];
+    const rowInputs = row.querySelectorAll('input[type="text"]');
     const isFull = Array.from(rowInputs).every(rowInput => rowInput.value.length === rowInput.maxLength);
     if (isFull) {
-        verifyAnswer(rowInputs);
+        const isAnswerCorrect = verifyAnswer(rowInputs);
         if (isAnswerCorrect) {
             disableAllInputs();
             alert("You win!");
         }
         else if (row.nextElementSibling) {
-            enableRow(row.nextElementSibling)
+            currentRowIndex += 1;
+            enableRow(currentRowIndex, rows)
         } else {
             disableAllInputs();
             alert("You lose!\nThe hidden word is: " + correctAnswer);
@@ -89,6 +115,7 @@ function verifyAnswer(rowInputs) {
         rowInput.disabled = true;
     })
     if (inputAnswer === correctAnswer) {
-        isAnswerCorrect = true;
+        return true;
     }
+    return false;
 }
