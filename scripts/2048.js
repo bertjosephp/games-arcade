@@ -625,3 +625,26 @@ var View = (function () {
     return View;
 
 })();
+
+
+/* * * * * * * * * * * * * * * * // Modifications // * * * * * * * * * * * * * * * */
+
+const helpButton = document.querySelector('.help-button');
+const closeHelpButton = document.querySelector('.close-help-button');
+const helpModal = document.getElementById('help-modal');
+
+document.addEventListener('DOMContentLoaded', () => {
+    helpButton.addEventListener('click', () => displayHelp(helpModal));
+    closeHelpButton.addEventListener('click', () => closeModal());
+    overlay.addEventListener('click', () => closeModal());
+});
+
+function displayHelp(helpModal) {
+    helpModal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+function closeModal() {
+    helpModal.classList.remove('active');
+    overlay.classList.remove('active');
+}

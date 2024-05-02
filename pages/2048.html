@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../styles/index.css"> -->
-    <link rel="stylesheet" href="../styles/game.css">
+    <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/2048.css">
+    <link rel="stylesheet" href="../styles/game.css">
     <link rel="shortcut icon" href="../images/favicon.ico">
     <script src="../scripts/2048.js" defer></script>
     <title>2048</title>
 
     <!--
-
+        Made by: gd4Ark
+        Source code: https://github.com/gd4Ark/2048
+        Live demo of original: 4ark.me/2048/
     -->
 </head>
 <body>
-    <div class="container">
+    <header>
+        <a href="index.html" class="back-link">←</a>
+        <h1>Games Arcade</h1>
+        <button class="help-button">?</button>
+    </header>
+    
+    <main class="container">
         <div class="heading">
             <h1 class="title">
                 <a href="">2048</a>
@@ -82,28 +90,6 @@
                 <p>WINNING</p>
             </div>
         </div>
-        <div class="footer">
-            <span>
-                Crafted with by
-                <a href="https://gd4ark.github.io/about/">@4Ark</a>/<a href="https://github.com/gd4Ark/2048">GitHub</a>
-            </span>
-        </div>
-    </div>
-</body>
-
-<!-- <body>
-    <header>
-        <a href="index.html" class="back-link">←</a>
-        <h1>Games Arcade</h1>
-        <button class="help-button">?</button>
-    </header>
-
-    <main>
-        <section class="game-section">
-            <h1 class="game-title">2048</h1>
-            <div class="game-board"></div>
-            <button class="submit-button">Submit</button>
-        </section>
     </main>
 
     <div id="help-modal" class="modal">
@@ -116,16 +102,10 @@
         <button class="close-help-button">Okay</div>
     </div>
 
-    <div id="result-modal" class="modal">
-        <h2 class="result-title"></h2>
-        <p class="result-message"></p>
-        <button class="restart-button">Restart Game</button>
-    </div>
-
     <div id="overlay"></div>
 
     <footer>
-        <p>Copyright © 2024 Bert Joseph Prestoza</p>
+        <p>Copyright © 2024 Bert Joseph Prestoza. Originally crafted by <a href="https://gd4ark.github.io/about/">@4Ark</a>/<a href="https://github.com/gd4Ark/2048">GitHub</a>.</p>
     </footer>
-</body> -->
+</body>
 </html>
