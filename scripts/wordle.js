@@ -132,19 +132,37 @@ function checkIfRowIsFull(rowIndex) {
 
 function verifyAnswer(rowInputs) {
     const inputAnswer = Array.from(rowInputs).map(input => input.value).join('');
+
+    const lettersInCorrectAnswer = {};
+    let correctAnswerCopy = correctAnswer.split('');
+    correctAnswerCopy.forEach(letter => {
+        lettersInCorrectAnswer[letter] = (lettersInCorrectAnswer[letter] || 0) + 1;
+    });
+
     Array.from(rowInputs).forEach((rowInput, index) => {
         if (correctAnswer[index] === rowInput.value) {
             rowInput.classList.add('correct-letter');
-        } else if (correctAnswer.includes(rowInput.value)) {
-            rowInput.classList.add('wrong-position');
-        } else {
-            rowInput.classList.add('wrong-letter');
+            rowInput.disabled = true;
+            lettersInCorrectAnswer[rowInput.value]--;
         }
-        rowInput.disabled = true;
     });
+
+    Array.from(rowInputs).forEach((rowInput, index) => {
+        if (!rowInput.classList.contains('correct-letter')) {
+            if (correctAnswer.includes(rowInput.value) && lettersInCorrectAnswer[rowInput.value] > 0) {
+                rowInput.classList.add('wrong-position');
+                lettersInCorrectAnswer[rowInput.value]--;
+            } else {
+                rowInput.classList.add('wrong-letter');
+            }
+            rowInput.disabled = true;
+        }
+    })
+
     if (inputAnswer === correctAnswer) {
         return true;
     }
+
     return false;
 }
 
@@ -170,8 +188,6 @@ function displayResult(modal, isWinner) {
 }
 
 function closeResult(modal) {
-    resultTitle.innerHTML = '';
-    resultMessage.innerHTML = ''
     modal.classList.remove('active');
     overlay.classList.remove('active');
 }
