@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/game.css">
+    <link rel="stylesheet" href="../styles/tile-match.css">
+    <script src="../scripts/tile-match.js" defer></script>
+    <title>Tile Match</title>
+
+    <!--
+        
+    -->
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-link">←</a>
+        <h1>Games Arcade</h1>
+        <button class="help-button">?</button>
+    </header>
+
+    <main>
+        <section class="game-section">
+            <h1 class="game-title">Tile Match</h1>
+            <div class="game-board"></div>
+        </section>
+    </main>
+
+    <div id="help-modal" class="modal">
+        <h2>How To Play</h2>
+        <div class="help-content">
+            <p>Find all matching tile pairs to win the game.</p>
+            <p>Click on a tile to reveal its image. Then, click another tile to find its match.</p>
+            <p>If the tiles match, they will remain face up. If they don't match, they will flip back over.</p>
+        </div>
+        <button class="close-help-button">Okay</div>
+    </div>
+
+    <div id="result-modal" class="modal">
+        <h2 class="result-title">You Win!</h2>
+        <p class="result-message">Play another round?</p>
+        <button class="restart-button">Restart Game</button>
+    </div>
+
+    <div id="overlay"></div>
+
+    <footer>
+        <p>Copyright © 2024 Bert Joseph Prestoza</p>
+    </footer>
+</body>
+</html>
