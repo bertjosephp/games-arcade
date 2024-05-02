@@ -9,7 +9,7 @@ def write_words_to_js(words, output_filepath):
     with open(output_filepath, 'w') as file:
         file.write("const listOfWords = [")
         for word in words:
-            file.write(f'{word}, ')
+            file.write(f'\"{word}\", ')
         file.write("];\n\n")
         file.write("export default listOfWords;")
 
