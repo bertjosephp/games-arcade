@@ -421,7 +421,7 @@ var Game = (function () {
 
 // * * * * * * * * * * * * * * * // Main // * * * * * * * * * * * * * * * //
 
-on(window, 'load', function () {
+document.addEventListener('DOMContentLoaded', () => {
     var view = new View();
     var game = new Game();
     game.init(view);
