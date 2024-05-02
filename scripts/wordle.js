@@ -181,13 +181,6 @@ function restartGame() {
     enableRow(currentRowIndex);
 }
 
-function displayHelp(resultModal) {
-    resultTitle.innerHTML = 'How To Play';
-    resultMessage.innerHTML = '';
-    resultModal.classList.add('active');
-    overlay.classList.add('active');
-}
-
 function displayResult(resultModal, isWinner) {
     if (isWinner) {
         resultTitle.innerHTML = 'You Win!';
