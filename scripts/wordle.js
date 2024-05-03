@@ -245,7 +245,7 @@ function clearWordleBoard() {
 // Switch button functionality between `Submit` and `Restart` depending on game status
 function toggleButton(isGameOver) {
     if (isGameOver) {
-        submitButton.textContent = 'Restart Game';
+        submitButton.textContent = 'Restart';
         submitButton.removeEventListener('click', handleSubmitClick);
         submitButton.addEventListener('click', handleRestartClick);
     } else {
