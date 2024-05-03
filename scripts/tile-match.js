@@ -4,7 +4,7 @@ const listOfEmojis = ["😀", "😂", "🥰", "😝", "😎", "🤩", "🥳", "�
 // DOM Elements
 const gameBoard = document.querySelector('.game-board');
 const helpButton = document.querySelector('.help-button');
-const restartButton = document.querySelector('.restart-button');
+const restartButtons = document.querySelectorAll('.restart-button');
 const closeHelpButton = document.querySelector('.close-help-button');
 const helpModal = document.getElementById('help-modal');
 const resultModal = document.getElementById('result-modal')
@@ -15,18 +15,23 @@ const overlay = document.getElementById('overlay');
 // Global variables
 const flippedTiles = [];
 const matchedTiles = [];
+const numRows = 4;          // numRows * numCols MUST be even!
+const numCols = 4;          //
 
 document.addEventListener('DOMContentLoaded', () => {
     // Generate 4x4 tile board
-    generateTileBoard(4, 4);
+    generateTileBoard(numRows, numCols);
 
     // Set emojis
-    setTileEmojis(4 * 4 / 2);
+    setTileEmojis(numRows * numCols / 2);
 
     // Attach event listeners to buttons and overlay
     helpButton.addEventListener('click', () => displayHelp(helpModal));
     closeHelpButton.addEventListener('click', () => closeModal());
     overlay.addEventListener('click', () => closeModal());
+    restartButtons.forEach(restartButton => {
+        restartButton.addEventListener('click', () => restartGame());
+    })
 })
 
 // Open help modal
@@ -56,7 +61,8 @@ function generateTileBoard(numRows, numCols) {
 }
 
 // Reveal a tile that has't been matched yet
-// If two tiles that don't are flipped, hide them after a certain delay
+// If two tiles that don't match are flipped, hide them after a certain delay
+// If they match, check if all the tiles have been flipped, then display result if game is over
 function handleTileClick() {
     if (matchedTiles.includes(this)) {
         return;
@@ -75,6 +81,10 @@ function handleTileClick() {
             hideTiles(tilesToHide);
         }
         flippedTiles.length = 0;
+        
+        if (isMatch && matchedTiles.length === numRows * numCols) {
+            displayResult(resultModal);
+        }
     }
 }
 
@@ -143,4 +153,23 @@ function shuffleArray(array) {
         array[i] = array[j];
         array[j] = temp;
     }
+}
+
+// Display result
+function displayResult(resultModal) {
+    resultModal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+// Reset emojis, board, and DOM elements
+function restartGame() {
+    const tiles = document.querySelectorAll('.game-tile');
+    tiles.forEach(tile => {
+        tile.classList.remove('revealed');
+        tile.innerHTML = '';
+    })
+    flippedTiles.length = 0;
+    matchedTiles.length = 0;
+    setTileEmojis(numRows * numCols / 2);
+    closeModal();
 }
