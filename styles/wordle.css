@@ -51,22 +51,22 @@
 .wordle-section .correct-letter {
    --flip-color: green;
     color: white;
-    animation: vertical-flip 0.5s ease-in forwards;
+    animation: horizontal-flip 0.5s ease-in forwards;
 }
 
 .wordle-section .wrong-position {
     --flip-color: orange;
     color: white;
-    animation: vertical-flip 0.5s ease-in forwards;
+    animation: horizontal-flip 0.5s ease-in forwards;
 }
 
 .wordle-section .wrong-letter {
     --flip-color: gray;
     color: white;
-    animation: vertical-flip 0.5s ease-in forwards;
+    animation: horizontal-flip 0.5s ease-in forwards;
 }
 
-@keyframes vertical-flip {
+@keyframes horizontal-flip {
     0% {
         transform: rotateY(0deg);
     }
