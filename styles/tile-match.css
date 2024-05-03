@@ -106,6 +106,6 @@
     .game-board .game-tile {
         height: max(32px, 21vw);
         width: max(32px, 21vw);
-        font-size: 32px;
+        font-size: max(28px, 15vw);
     }
 }
