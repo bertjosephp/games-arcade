@@ -1,5 +1,7 @@
 const listOfEmojis = ["😀", "😂", "🥰", "😝", "😎", "🤩", "🥳", "😭", "🐶", "🐱", "🐭", "🐹", "🐰", "🐻‍❄️", "🐮", "🐵", "⚽️", "🏀", "🏈", "⚾️", "🎱", "🎾", "🏐", "🏉", "🍎", "🍋", "🍉", "🍇", 
 "🍓", "🍒", "🍍", "🥝", "🚗", "🚙", "🏎️", "🚑", "🚒", "🚛", "🚲", "🛵"];
+
+// DOM Elements
 const gameBoard = document.querySelector('.game-board');
 const helpButton = document.querySelector('.help-button');
 const restartButton = document.querySelector('.restart-button');
@@ -10,29 +12,37 @@ const resultTitle = document.querySelector('.result-title');
 const resultMessage = document.querySelector('.result-message');
 const overlay = document.getElementById('overlay');
 
+// Global variables
 const flippedTiles = [];
 const matchedTiles = [];
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Generate 4x4 tile board
     generateTileBoard(4, 4);
+
+    // Set emojis
     setTileEmojis(4 * 4 / 2);
 
+    // Attach event listeners to buttons and overlay
     helpButton.addEventListener('click', () => displayHelp(helpModal));
     closeHelpButton.addEventListener('click', () => closeModal());
     overlay.addEventListener('click', () => closeModal());
 })
 
+// Open help modal
 function displayHelp(helpModal) {
     helpModal.classList.add('active');
     overlay.classList.add('active');
 }
 
+// Close modal
 function closeModal() {
     helpModal.classList.remove('active');
     resultModal.classList.remove('active');
     overlay.classList.remove('active');
 }
 
+// Generate game board
 function generateTileBoard(numRows, numCols) {
     gameBoard.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
     gameBoard.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
@@ -45,6 +55,8 @@ function generateTileBoard(numRows, numCols) {
     }
 }
 
+// Reveal a tile that has't been matched yet
+// If two tiles that don't are flipped, hide them after a certain delay
 function handleTileClick() {
     if (matchedTiles.includes(this)) {
         return;
@@ -66,6 +78,7 @@ function handleTileClick() {
     }
 }
 
+// Reveal the emoji on the tile, with animation
 function revealTile(tile) {
     tile.classList.add('revealed');
     setTimeout(() => {
@@ -74,6 +87,7 @@ function revealTile(tile) {
     }, 125);
 }
 
+// Hide the last 2 non-matching tiles, with animation
 function hideTiles(tilesToHide) {
     setTimeout(() => {
         tilesToHide.forEach(tile => {
@@ -89,6 +103,7 @@ function hideTiles(tilesToHide) {
     }, 500);
 }
 
+// Check if the last 2 tiles flipped match
 function checkIfTilesMatch() {
     if (flippedTiles[0].getAttribute('data-emoji') === flippedTiles[1].getAttribute('data-emoji')) {
         matchedTiles.push(flippedTiles[0]);
@@ -98,7 +113,9 @@ function checkIfTilesMatch() {
     return false;
 }
 
+// Assign tiles with emojis
 function setTileEmojis(numPairs) {
+    // Select random pairs of emojis from list
     const selectedEmojis = [];
     while (selectedEmojis.length < numPairs * 2) {
         const randomIndex = Math.floor(Math.random() * listOfEmojis.length);
@@ -108,14 +125,17 @@ function setTileEmojis(numPairs) {
         }
     }
 
+    // Shuffle list of emojis
     shuffleArray(selectedEmojis);
+
+    // Assign shuffled emojis to tiles
     const tiles = document.querySelectorAll('.game-tile');
     tiles.forEach((tile, index) => {
         tile.setAttribute('data-emoji', selectedEmojis[index]);
     })
-    console.log(selectedEmojis);
 }
 
+// Helper function to shuffle a list
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

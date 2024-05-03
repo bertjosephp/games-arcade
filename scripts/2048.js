@@ -627,7 +627,7 @@ var View = (function () {
 })();
 
 
-/* * * * * * * * * * * * * * * * // Modifications // * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * // Help Popup // * * * * * * * * * * * * * * * */
 
 const helpButton = document.querySelector('.help-button');
 const closeHelpButton = document.querySelector('.close-help-button');
