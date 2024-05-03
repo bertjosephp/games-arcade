@@ -10,6 +10,9 @@ const resultTitle = document.querySelector('.result-title');
 const resultMessage = document.querySelector('.result-message');
 const overlay = document.getElementById('overlay');
 
+const flippedTiles = [];
+const matchedTiles = [];
+
 document.addEventListener('DOMContentLoaded', () => {
     generateTileBoard(4, 4);
     setTileEmojis(4 * 4 / 2);
@@ -43,12 +46,52 @@ function generateTileBoard(numRows, numCols) {
 }
 
 function handleTileClick() {
-    this.classList.add('revealed');
-    this.classList.add('flipped')
+    revealTile(this);
+
+    if (flippedTiles.length === 0) {
+        flippedTiles.push(this);
+    } else if (flippedTiles.length === 1) {
+        flippedTiles.push(this);
+        
+        isMatch = checkIfTilesMatch();
+        if (!isMatch) {
+            const tilesToHide = [...flippedTiles];
+            hideTiles(tilesToHide);
+        }
+        flippedTiles.length = 0;
+    }
+}
+
+function revealTile(tile) {
+    tile.classList.add('revealed');
     setTimeout(() => {
-        const emoji = this.getAttribute('data-emoji');
-        this.innerHTML = emoji;
+        const emoji = tile.getAttribute('data-emoji');
+        tile.innerHTML = emoji;
     }, 125);
+}
+
+function hideTiles(tilesToHide) {
+    setTimeout(() => {
+        tilesToHide.forEach(tile => {
+            tile.classList.remove('revealed');
+            tile.classList.add('hidden');
+            setTimeout(() => {
+                tile.innerHTML = '';
+            }, 125);
+            setTimeout(() => {
+                tile.classList.remove('hidden');
+            }, 250);
+        })
+    }, 500);
+}
+
+function checkIfTilesMatch() {
+    if (flippedTiles[0].getAttribute('data-emoji') === flippedTiles[1].getAttribute('data-emoji')) {
+        matchedTiles.push(flippedTiles[0]);
+        matchedTiles.push(flippedTiles[1]);
+        return true;
+    }
+    return false;
 }
 
 function setTileEmojis(numPairs) {
