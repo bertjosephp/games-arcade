@@ -14,7 +14,7 @@ def write_words_to_js(words, output_filepath):
         file.write("export default listOfWords;")
 
 filepath = './wordle-nyt-answers-alphabetical.txt'
-output_filepath = '../scripts/words.js'
+output_filepath = 'words.js'
 
 words = read_words_from_file(filepath)
 write_words_to_js(words, output_filepath)
