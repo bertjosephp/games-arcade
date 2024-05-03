@@ -85,6 +85,7 @@ main {
 
 .game-card {
     height: 400px;
+    max-width: 400px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -206,13 +207,15 @@ footer p {
     }
 
     .games-section {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .game-card {
-        height: 180px;
-        width: 95%;
+        height: 80vw;
+        width: 80vw;
     }
 
     .game-card img {
