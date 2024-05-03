@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/lights-out.css">
+    <link rel="stylesheet" href="../styles/game.css">
+    <script src="../scripts/lights-out.js" defer></script>
+    <title>Lights Out</title>
+
+    <!--
+        Made by: ScriptRaccoon
+        Source code: https://github.com/ScriptRaccoon/Lights-Out-Vanilla-JavaScript
+        Live demo of original: https://lichter-aus.netlify.app
+    -->
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-link">←</a>
+        <h1>Games Arcade</h1>
+        <button class="help-button">?</button>
+    </header>
+
+    <main>
+        <section class="game-section">
+            <h1 class="game-title">Lights Out</h1>
+            <div id="board"></div>
+            <menu>
+                <button id="restartBtn">Restart</button>
+                <button id="randomizeBtn">Randomize</button>
+                <label for="sizeInput">
+                    Size
+                    <input
+                        type="text"
+                        id="sizeInput"
+                        pattern="\d+"
+                        value="5"
+                    />
+                </label>
+            </menu>
+        </section>
+    </main>
+
+    <div id="help-modal" class="modal">
+        <h2>How To Play</h2>
+        <div class="help-content">
+            <p>The board consists of a grid of lights.</p>
+            <p>Press any of the lights to toggle it and the adjacent lights.</p>
+            <p>Switch all the lights off with as few button presses as possible!</p>
+        </div>
+        <button class="close-help-button">Okay</div>
+    </div>
+
+    <div id="overlay"></div>
+
+    <footer>
+        <p>Copyright © 2024 Bert Joseph Prestoza. Originally crafted by <a href="https://github.com/ScriptRaccoon">@ScriptRaccoon</a>/<a href="https://github.com/ScriptRaccoon/Lights-Out-Vanilla-JavaScript">GitHub</a>.</p>
+    </footer>
+</body>
+</html>
