@@ -4,7 +4,7 @@
     Live demo of original: 4ark.me/2048/
                                                 */
 
-/* * * * * * * * * * * * * * * * // Keyframes // * * * * * * * * * * * * * * * */
+/* Keyframes */
 
 @keyframes moveup{
     0%{
@@ -37,7 +37,7 @@
     }
 }
 
-/* * * * * * * * * * * * * * * * // Media // * * * * * * * * * * * * * * * */
+/* Media */
 
 @media screen and (max-width:1250px){
     html,body{
@@ -95,21 +95,84 @@
     }
 }
 
+@media screen and (max-width: 460px) {
+    .title a {
+        font-size: 48px;
+    }
+    .container {
+        width: min(280px, 80vw);
+    }
+
+    .game-container {
+        width: 100%;
+    }
+
+    .heading {
+        margin-bottom: 0;
+    }
+
+    .score-container,
+    .best-container{
+        padding: 3px 10px;
+    }
+
+    .game-container{
+        margin-top: 10px;
+        width: 280px;
+        height: 280px;
+    }
+    
+    .grid-container,
+    .tile-container{
+        width: 260px;
+        height: 260px;
+    }
+    .grid-row,
+    .tile{
+        height: 22.75%;
+    }
+    .grid-cell,
+    .tile{
+        width: 22.75%;
+    }
+    .grid-row{
+        margin-bottom: 3%;
+    }
+    .grid-cell{
+        margin-right: 3%;
+    }
+    .tile{
+        font-size: 35px;
+    }
+    .tile[data-val="128"],
+    .tile[data-val="256"],
+    .tile[data-val="512"]{
+        font-size: 25px;
+    }
+    .tile[data-val="1024"],
+    .tile[data-val="2048"]{
+        font-size: 21px;
+    }
+
+    .pop-container p{
+        font-size: 30px;
+    }
+}
+
 /* * * * * * * * * * * * * * * * // Style // * * * * * * * * * * * * * * * */
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 
 html,
 body {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    color: #776e65;
+    color: black;
     font-size: 18px;
-    background: rgba(238, 228, 218, 0.5);
-    overflow: hidden;
+    background-color: #f3f4f6;
     height: 100%;
 }
 
@@ -124,6 +187,7 @@ a {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     width: 450px;
     height: 100vh;
     box-sizing: content-box;
@@ -207,6 +271,10 @@ h1.title {
 
 h2.subtitle {
     font-size: 1em;
+}
+
+h2 {
+    border: none;
 }
 
 .game-container {
@@ -423,91 +491,4 @@ h2.subtitle {
     font-size: 0.75rem;
     color: #333;
     opacity: 0.7;
-}
-
-
-/* * * * * * * * * * * * * * * * // Modifications // * * * * * * * * * * * * * * * */
-
-* {
-    box-sizing: content-box;
-}
-
-html,
-body {
-    color: black;
-    font-size: 18px;
-    background-color: #f3f4f6;
-    height: 100%;
-}
-
-h2 {
-    border: none;
-}
-
-.container {
-    justify-content: flex-start;
-}
-
-@media screen and (max-width: 460px) {
-    .title a {
-        font-size: 48px;
-    }
-    .container {
-        width: min(280px, 80vw);
-    }
-
-    .game-container {
-        width: 100%;
-    }
-
-    .heading {
-        margin-bottom: 0;
-    }
-
-    .score-container,
-    .best-container{
-        padding: 3px 10px;
-    }
-
-    .game-container{
-        margin-top: 10px;
-        width: 280px;
-        height: 280px;
-    }
-    
-    .grid-container,
-    .tile-container{
-        width: 260px;
-        height: 260px;
-    }
-    .grid-row,
-    .tile{
-        height: 22.75%;
-    }
-    .grid-cell,
-    .tile{
-        width: 22.75%;
-    }
-    .grid-row{
-        margin-bottom: 3%;
-    }
-    .grid-cell{
-        margin-right: 3%;
-    }
-    .tile{
-        font-size: 35px;
-    }
-    .tile[data-val="128"],
-    .tile[data-val="256"],
-    .tile[data-val="512"]{
-        font-size: 25px;
-    }
-    .tile[data-val="1024"],
-    .tile[data-val="2048"]{
-        font-size: 21px;
-    }
-
-    .pop-container p{
-        font-size: 30px;
-    }
 }

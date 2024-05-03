@@ -4,15 +4,21 @@
     align-items: center;
 }
 
+/* Game Title */
+
 .game-section h1 {
     font-size: 40px;
     padding: 24px 0;
 }
 
+/* Game Board */
+
 .game-board {
     display: grid;
     border: 2px solid gray;
 }
+
+/* Grid Tile */
 
 .game-tile {
     height: 120px;
@@ -33,6 +39,8 @@
 .game-tile.hidden {
     animation: horizontal-reverse-flip 0.25s ease-in reverse forwards;
 }
+
+/* Keyframes */
 
 @keyframes horizontal-flip {
     0% {
@@ -67,6 +75,8 @@
         background-color: white;
     }
 }
+
+/* Media */
 
 @media screen and (max-width: 510px) {
     .game-section .game-title {

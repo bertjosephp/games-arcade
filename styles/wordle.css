@@ -4,16 +4,22 @@
     align-items: center;
 }
 
+/* Game Title */
+
 .wordle-section h1 {
     font-size: 40px;
     padding: 24px 0;
 }
+
+/* Game Board */
 
 .wordle-section .row {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
 }
+
+/* Grid Tile */
 
 .wordle-section input {
     height: 80px;
@@ -31,6 +37,8 @@
     border: 3px solid black;
 }
 
+/* Buttons */
+
 .submit-button, .restart-button {
     font-size: 20px;
     margin-top: 40px;
@@ -47,6 +55,8 @@
 .submit-button:active, .restart-button:active {
     background-color: gray;
 }
+
+/* Input Status */
 
 .wordle-section .correct-letter {
    --flip-color: green;
@@ -66,6 +76,8 @@
     animation: horizontal-flip 0.5s ease-in forwards;
 }
 
+/* Keyframes */
+
 @keyframes horizontal-flip {
     0% {
         transform: rotateY(0deg);
@@ -77,6 +89,8 @@
         border-color: var(--flip-color);
     }
 }
+
+/* Media */
 
 @media screen and (max-width: 500px) {
     .wordle-section .game-title {

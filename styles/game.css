@@ -1,6 +1,15 @@
+/*
+    Styles common across all game pages.
+*/
+
+
+/* Main */
+
 main {
     padding: 20px 0;
 }
+
+/* Header */
 
 header .back-link {
     font-size: 32px;
@@ -23,7 +32,7 @@ header .help-button {
     font-weight: 800;
 }
 
-/* Popups */
+/* Modal */
 
 .modal {
     position: fixed;
@@ -41,6 +50,21 @@ header .help-button {
     flex-direction: column;
     align-items: center;
 }
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal h2 {
+    font-size: 24px;
+    border-bottom: 1px solid black;
+}
+
+.modal p {
+    font-size: 16px;
+}
+
+/* Help Modal */
 
 .help-content {
     display: flex;
@@ -69,18 +93,7 @@ header .help-button {
     background-color: gray;
 }
 
-.modal.active {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.modal h2 {
-    font-size: 24px;
-    border-bottom: 1px solid black;
-}
-
-.modal p {
-    font-size: 16px;
-}
+/* Overlay */
 
 #overlay {
     position: fixed;
@@ -98,6 +111,8 @@ header .help-button {
     opacity: 0.8;
     pointer-events: all;
 }
+
+/* Media */
 
 @media screen and (max-width: 720px) {
     header .back-link {
