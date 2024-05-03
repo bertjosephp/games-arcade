@@ -59,6 +59,10 @@ header {
     /* box-shadow: 0px 2px black; */
 }
 
+header h1 {
+    text-align: center;
+}
+
 main {
     margin: 0;
     padding: 10px 0;
@@ -158,6 +162,7 @@ footer {
 
 footer p {
     font-size: 16px;
+    text-align: center;
 }
 
 .left {
@@ -189,8 +194,13 @@ footer p {
     footer p {
         font-size: 12px;
     }
+
+    footer a {
+        font-size: 12px;
+        padding: none;
+    }
     
-    a {
+    header a {
         padding: 4px;
         font-size: 16px;
     }

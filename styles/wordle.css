@@ -77,3 +77,26 @@
         border-color: var(--flip-color);
     }
 }
+
+@media screen and (max-width: 500px) {
+    .wordle-section .game-title {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+
+    .wordle-section .row {
+        gap: 4px;
+        margin-bottom: 4px;
+    }
+
+    .wordle-section input {
+        height: max(32px, 15vw);
+        width: max(32px, 15vw);
+        border: 2px solid gray;
+        font-size: 32px;
+    }
+
+    .submit-button {
+        margin-top: 20px;
+    }
+}

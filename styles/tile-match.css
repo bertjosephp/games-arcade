@@ -67,3 +67,16 @@
         background-color: white;
     }
 }
+
+@media screen and (max-width: 510px) {
+    .game-section .game-title {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+
+    .game-board .game-tile {
+        height: max(32px, 21vw);
+        width: max(32px, 21vw);
+        font-size: 32px;
+    }
+}

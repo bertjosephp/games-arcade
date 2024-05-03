@@ -11,8 +11,8 @@
 #board {
 	--size: 5;
 	display: grid;
-	width: min(90vw, 500px);
-	height: min(90vw, 500px);
+	width: min(88vw, 500px);
+	height: min(88vw, 500px);
 	grid-template-columns: repeat(var(--size), 1fr);
 	grid-template-rows: repeat(var(--size), 1fr);
 	gap: calc(20% / var(--size));
@@ -118,4 +118,17 @@ input[type="text"]:invalid {
 footer a {
     text-decoration: none;
     color: black;
+}
+
+@media screen and (max-width: 560px) {
+    .game-section .game-title {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+
+    .game-board .game-tile {
+        height: max(32px, 15vw);
+        width: max(32px, 15vw);
+        font-size: 32px;
+    }
 }
