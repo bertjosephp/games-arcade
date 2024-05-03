@@ -46,6 +46,10 @@ function generateTileBoard(numRows, numCols) {
 }
 
 function handleTileClick() {
+    if (matchedTiles.includes(this)) {
+        return;
+    }
+    
     revealTile(this);
 
     if (flippedTiles.length === 0) {
