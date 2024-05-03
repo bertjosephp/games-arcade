@@ -61,8 +61,7 @@ header {
 
 main {
     margin: 0;
-    padding: 0;
-    padding-bottom: 40px;
+    padding: 10px 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -73,17 +72,15 @@ main {
 .games-section {
     width: 90%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
     justify-items: center;
     align-items: center;
-    gap: 2%;
 }
 
 .game-card {
-    width: 400px;
     height: 400px;
-    max-width: 300px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -98,13 +95,12 @@ main {
 .game-card img {
     width: 100%;
     height: 100%;
-    border-top-right-radius: 5px;
     object-fit: cover;
     transition: 200ms;
 }
 
 .game-card-content {
-    padding: 20px 20px;
+    padding: 20px;
     position: absolute;
     bottom: 10%;
     display: flex;
@@ -164,37 +160,33 @@ footer p {
     font-size: 16px;
 }
 
-@media screen and (max-width: 1430px) {    
-    .games-section {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        justify-items: center;
-    }
-
-    .game-card {
-        width: 100%;
-        height: auto;
-        max-height: 300px;
-        max-width: 480px;
-    }
-
-    .game-card-content {
-        bottom: 5%;
-    }
-
-    footer p {
-        font-size: 16px;
-    }
+.left {
+    margin-left: auto;
 }
 
-@media screen and (max-width: 720px) {
+.right {
+    margin-right: auto;
+}
+
+.top {
+    margin-top: auto;
+}
+
+.bottom {
+    margin-bottom: auto;
+}
+
+
+@media screen and (max-width: 640px) {
+    header h1 {
+        font-size: 24px;
+    }
+
     h2 {
         font-size: 16px
     }
     
-    p {
+    footer p {
         font-size: 12px;
     }
     
@@ -203,19 +195,41 @@ footer p {
         font-size: 16px;
     }
 
-    main {
-        padding-top: 20px;
-    }
-
     .games-section {
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
     }
 
     .game-card {
-        max-height: 180px;
+        height: 180px;
+        width: 95%;
+    }
+
+    .game-card img {
+        top: 0%;
     }
 
     .game-card-content {
-        padding: 10px 5px;
+        padding: 8px 4px;
+    }
+
+    .left {
+        margin-left: 0;
+    }
+
+    .right {
+        margin-right: 0;
+    }
+
+    .top {
+        margin-top: 0;
+    }
+
+    .bottom {
+        margin-bottom: 0;
+    }
+
+    footer {
+        padding: 10px 0;
     }
 }
