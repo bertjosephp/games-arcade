@@ -4,8 +4,6 @@
     Live demo of original: https://lichter-aus.netlify.app
                                                                                 */
 
-/* * * * * * * * * * * * * * * * // Style // * * * * * * * * * * * * * * * */
-
 /* board */
 
 #board {
@@ -37,18 +35,27 @@ input[type="checkbox"]:not(:checked) + label {
 }
 
 #board label {
-	/* border-radius: 5px; */
 	transition: background-color 200ms, box-shadow 200ms;
 	cursor: pointer;
+}
+
+/* menu */
+menu {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
 }
 
 /* result message */
 
 #win {
-	color: #ff0;
+	color: black;
 	margin: 20px 0px;
 	opacity: 0;
 	scale: 0;
+	font-size: 32px;
 	transition: opacity 150ms, scale 150ms;
 }
 
@@ -60,22 +67,21 @@ input[type="checkbox"]:not(:checked) + label {
 /* button */
 
 button {
-	font-family: inherit;
-	font-size: inherit;
-	padding: 6px 10px;
-	border: 2px solid white;
-	background: none;
-	color: inherit;
-	cursor: pointer;
-	border-radius: 8px;
+	font-size: 20px;
+    padding: 10px 60px;
+    border-radius: 15px;
+    cursor: pointer; 
+    background-color: white;
 }
 
 button:hover,
 button:focus-visible {
+	background-color: lightgray;
 	box-shadow: 0px 0px 8px #fffa;
 }
 
 button:active {
+	background-color: gray;
 	scale: 0.95;
 }
 
@@ -86,11 +92,12 @@ input[type="text"] {
 	background: none;
 	color: inherit;
 	font-size: inherit;
-	border: 2px solid white;
+	border: 2px solid gray;
 	outline: none;
 	text-align: center;
-	padding: 6px;
+	padding: 2px;
 	width: 50px;
+	border-radius: 5px;
 }
 
 input[type="text"]:focus:valid {
@@ -101,8 +108,14 @@ input[type="text"]:invalid {
 	border-color: red;
 }
 
+/* buttons */
+.button-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+}
 
-/* * * * * * * * * * * * * * * * // Modifications // * * * * * * * * * * * * * * * */
 
 .game-section {
     display: flex;

@@ -27,8 +27,6 @@
             <h1 class="game-title">Lights Out</h1>
             <div id="board"></div>
             <menu>
-                <button id="restartBtn">Restart</button>
-                <button id="randomizeBtn">Randomize</button>
                 <label for="sizeInput">
                     Size
                     <input
@@ -38,7 +36,12 @@
                         value="5"
                     />
                 </label>
+                <div class="button-container">
+                    <button id="restartBtn">Restart</button>
+                    <button id="randomizeBtn">Randomize</button>
+                </div>
             </menu>
+            <p id="win">You Win!</p>
         </section>
     </main>
 
